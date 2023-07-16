@@ -53,6 +53,7 @@ uint8 READY=1
 uint8 TAKING_OFF=2
 uint8 MISSION=3
 uint8 LANDING=4
+uint8 ERROR=5
 uint8 status
 
 #######

@@ -152,13 +152,16 @@ namespace tello_driver
   public:
 
     StateSocket(TelloDriverNode *driver, unsigned short data_port);
+    uint8_t get_status();
+    void set_status(uint8_t new_status);
 
   private:
 
     void process_packet(size_t r) override;
 
+    float_t initial_altitude_;  //Tello initial barometric altitude
     uint8_t sdk_ = tello_msgs::msg::FlightData::SDK_UNKNOWN;  // Tello SDK version
-    float_t initial_altitude_ = 0;  //Tello initial barometric altitude
+    uint8_t status_ = tello_msgs::msg::FlightData::UNKNOWN;  // Tello status
   };
 
   //=====================================================================================

@@ -127,6 +127,10 @@ namespace tello_driver
     if (!state_socket_->receiving() && !command_socket_->waiting()) {
       // First command to the drone must be "command"
       command_socket_->initiate_command("command", false);
+      if (state_socket_->receiving() && command_socket_->waiting())
+      {
+        state_socket_->set_status(tello_msgs::msg::FlightData::READY);
+      }
       return;
     }
 
@@ -161,6 +165,7 @@ namespace tello_driver
     }
 
     if (timeout) {
+      state_socket_->set_status(tello_msgs::msg::FlightData::ERROR);
       return;
     }
 

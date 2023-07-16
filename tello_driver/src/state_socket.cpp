@@ -87,10 +87,12 @@ namespace tello_driver
         msg.h = std::stoi(fields["h"]);
         msg.bat = std::stoi(fields["bat"]);
         msg.baro = std::stof(fields["baro"]);
+        msg.alt = initial_altitude_ - msg.baro;
         msg.time = std::stoi(fields["time"]);
         msg.agx = std::stof(fields["agx"]);
         msg.agy = std::stof(fields["agy"]);
         msg.agz = std::stof(fields["agz"]);
+        msg.status = status_;
 
       } catch (std::exception e) {
         RCLCPP_ERROR(driver_->get_logger(), "Can't parse flight data");
@@ -99,6 +101,15 @@ namespace tello_driver
 
       driver_->flight_data_pub_->publish(msg);
     }
+  }
+
+  uint8_t StateSocket::get_status()
+  {
+    return status_;
+  }
+  void StateSocket::set_status(uint8_t new_status)
+  {
+    status_ = new_status;
   }
 
 } // namespace tello_driver
