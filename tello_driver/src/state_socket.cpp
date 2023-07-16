@@ -53,6 +53,10 @@ namespace tello_driver
         sdk_ = tello_msgs::msg::FlightData::SDK_2_0;
       }
       RCLCPP_INFO(driver_->get_logger(), "Receiving state, SDK version %s", enum_names[sdk_].c_str());
+
+      // Store initial baro altitude
+      initial_altitude_ =  std::stof(fields["baro"]);
+      RCLCPP_INFO(driver_->get_logger(), "Initial altitude is %f", initial_altitude_);
     }
 
     // Only send ROS messages if there are subscribers
