@@ -35,6 +35,7 @@ int32 h       # height in cm
 
 int32 bat     # battery %
 
+float32 alt   # altitude from ground in m
 float32 baro  # barometric altitude in m
 int32 time    # time used by motor in seconds
 
