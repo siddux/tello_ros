@@ -44,6 +44,17 @@ float32 agy   # y acceleration in mm/s^2, +right
 float32 agz   # z acceleration in mm/s^2, +down
 
 #######
+# Status
+#######
+
+uint8 UNKNOWN=0
+uint8 READY=1
+uint8 TAKING_OFF=2
+uint8 MISSION=3
+uint8 LANDING=4
+uint8 status
+
+#######
 # SDK 2.0+ fields
 #######
 
